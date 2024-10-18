@@ -34,7 +34,7 @@ export const useFirestore = (databaseName: string): Firestore => {
 
 export const auth = getAuth(useFirebase())
 export const defaultDb: Firestore = useFirestore('(default)')
-export const db: Firestore = is_dev ? useFirestore('(default)') : useFirestore('connect')
+export const db: Firestore = is_dev ? useFirestore('(default)') : useFirestore('reviews')
 export const storage = getStorage(useFirebase())
 export const functions = getFunctions(useFirebase(), 'us-central1')
 
