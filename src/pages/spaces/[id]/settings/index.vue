@@ -76,7 +76,6 @@ definePageMeta({
 usePageHeader().setPageHeader({
 	title: 'Settings',
 	description: 'Manage your bookings account settings here',
-	btnText: 'Add Booking Type',
 	shouldShowFab: false,
 	shouldShowTab: false
 

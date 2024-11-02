@@ -9,10 +9,14 @@
 			</span>
 		</div>
 
-		<button v-if="headstate.shouldShowTab.value && headstate.btnText.value" class="btn-primary" :disabled="headstate.loading.value" @click="headstate.btnCall.value">
+		<button v-if="headstate.shouldShowTab.value && headstate.btnText.value && !headstate.children.value.length" class="btn-primary" :disabled="headstate.loading.value" @click="headstate.btnCall.value">
 			<span v-if="!headstate.loading.value">	{{ headstate.btnText.value }}</span>
 			<Spinner v-else />
 		</button>
+
+		<div v-if="headstate.children.value.length && headstate.shouldShowTab.value" class="flex items-center gap-4">
+			<IconDropdown :children="dropdownChildren()" :data="{}" :button-text="headstate.btnText.value" class-name="min-w-[230px]" />
+		</div>
 
 		<div v-else class="w-auto md:hidden block">
 			<AvatarDropdown />
@@ -21,12 +25,22 @@
 </template>
 
 <script setup lang="ts">
-
+import { Edit } from 'lucide-vue-next'
 import { usePageHeader } from '@/composables/utils/header'
 
 import AvatarDropdown from '@/components/core/AvatarDropdown.vue'
 
 const { headstate } = usePageHeader()
+
+const dropdownChildren = () => {
+	const res = [] as any[]
+	const headstateChildren = headstate.children.value.map((child) => {
+		return { name: child.label, func: child.action, icon: child.icon }
+	})
+
+	res.push(...headstateChildren)
+    return res
+}
 
 
 </script>

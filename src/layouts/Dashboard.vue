@@ -4,7 +4,7 @@
 			<LayoutsSideBarLeftSidebar :routes="mainShowRoutes" />
 
 			<div class="relative bg-light page w-full border-x border-dark mx  h-screen sm:h-auto   overflow-hidden">
-				<LayoutsDashboadHeader :is-business="false" />
+				<LayoutsDashboadHeader />
 				<Alert />
 				<div class="w-full h-full relative  overflow-x-hidden bg-light   pb-40">
 					<section class="flex-col flex items-stretch">

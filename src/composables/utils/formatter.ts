@@ -123,3 +123,17 @@ export const formatTimeRange = (timeDuration: TimeDuration): string => {
 
   return `${formattedStartTime} - ${formattedEndTime}`
 }
+
+export const convertTextToHTMl = (text: string) => {
+  const textArray = text.split(/(\s|\n)/)
+  const newTextArray = [] as string[]
+  textArray.forEach((word: string) => {
+    if (word.match(/^(http|https):\/\/[^ "]+$/)) {
+      newTextArray.push(`<a href="${word}" class="external_link" target="_blank">${word}</a>`)
+    } else {
+      newTextArray.push(word)
+    }
+  })
+  const formatedtext = newTextArray.join(' ')
+  return `<em class="formatted-text">${formatedtext}</em>`
+}

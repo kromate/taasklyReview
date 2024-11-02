@@ -10,10 +10,8 @@ import LoadingVerification from '@/components/modals/core/loading.vue'
 // ==================== BOTTOMBAR ===============================
 import BottomMenu from '@/components/layouts/bottomBar/modal/Main.vue'
 
-
-// ==================== PEOPLE ===============================
-import AddPerson from '@/components/people/AddPerson.vue'
-import ImportPerson from '@/components/people/ImportPerson.vue'
+// ==================== SPACE ===============================
+import CreateSpace from '@/components/space/Create.vue'
 
 
 
@@ -21,21 +19,22 @@ import ImportPerson from '@/components/people/ImportPerson.vue'
 type AuthTypes = 'Logout'
 type CoreTypes = 'Confirmation' | 'LoadingVerification'
 type BottombarTypes = 'BottomMenu'
-type PeopleTypes = 'AddPerson' | 'ImportPerson'
+type SpaceTypes = 'CreateSpace'
+
 
 
 
 const AuthModals = { Logout } as Record<AuthTypes, any>
 const CoreModals = { Confirmation, LoadingVerification } as Record<CoreTypes, any>
 const BottombarModals = { BottomMenu } as Record<BottombarTypes, any>
-const PeopleModals = { AddPerson, ImportPerson } as Record<PeopleTypes, any>
+const SpaceModals = { CreateSpace } as Record<SpaceTypes, any>
 
 
 
 const authModal = modal.register('Auth', AuthModals)
 const coreModal = modal.register('Core', CoreModals)
 const bottombarModal = modal.register('Bottombar', BottombarModals)
-const peopleModal = modal.register('People', PeopleModals)
+const spaceModal = modal.register('Space', SpaceModals) 
 
 
 
@@ -43,7 +42,7 @@ const peopleModal = modal.register('People', PeopleModals)
 export const useAuthModal = () => authModal
 export const useCoreModal = () => coreModal
 export const useBottombarModal = () => bottombarModal
-export const usePeopleModal = () => peopleModal
+export const useSpaceModal = () => spaceModal
 
 
 

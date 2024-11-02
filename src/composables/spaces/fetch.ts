@@ -16,7 +16,7 @@ export const useFetchUserSpaces = () => {
     const { id: user_id } = useUser()
     const loading = ref(false)
 
-    const fetchUserSpaces = async () => {
+    const fetchSpaces = async () => {
         loading.value = true
         fetchedSpaces.value = []
 
@@ -29,6 +29,6 @@ export const useFetchUserSpaces = () => {
         }
     }
 
-    return { loading, fetchedSpaces, fetchUserSpaces, SpaceIsEmpty }
+    return { loading, fetchedSpaces, fetchSpaces, SpaceIsEmpty }
 }
 

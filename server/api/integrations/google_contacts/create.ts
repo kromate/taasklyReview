@@ -16,9 +16,9 @@ export default defineEventHandler(async (event) => {
         import.meta.env.G_AUTH_CLIENT_SECRET
     )
     oAuth2Client.setCredentials({
-        access_token: access_token,
-        refresh_token: refresh_token,
-        expiry_date: expiry_date
+        access_token,
+        refresh_token,
+        expiry_date
     })
 
     const people = google.people({ version: 'v1', auth: oAuth2Client })
@@ -44,7 +44,6 @@ export default defineEventHandler(async (event) => {
             data: response.data
         }
     } catch (error: any) {
-        console.log(error)
         throw createError({ statusCode: 500, message: error.message })
     }
 })

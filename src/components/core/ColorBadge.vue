@@ -55,15 +55,13 @@ const selectPalette = computed(() => {
 		case 'paid':
 		case 'opened':
 		case 'public':
-		case 'active':
+		case 'approved':
 			return palette.success
 
 		case 'failed':
 		case 'closed':
-		case 'unpaid':
-		case 'inactive':
+		case 'unapproved':
 		case 'rejected':
-		case 'suspended':
 		case 'cancelled':
 			return palette.failed
 

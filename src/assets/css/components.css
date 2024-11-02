@@ -38,7 +38,7 @@
     }
 
     .auth-box {
-        @apply w-[450px] mx-auto relative max-w-[100%] bg-light px-9 py-7 flex flex-col items-center gap-4  rounded-md border;
+        @apply w-[450px] mx-auto relative max-w-[100%] bg-light md:px-9 px-7 py-7 flex flex-col items-center gap-4  rounded-md border;
         -webkit-perspective: 1000px;
         perspective: 1000px;
         -webkit-transform-style: preserve-3d;

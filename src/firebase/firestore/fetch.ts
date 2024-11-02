@@ -6,6 +6,8 @@ import { db } from '../init'
 
 const FETCHLIMIT = 300
 
+
+
 export const getSingleFirestoreDocument = async(
 	collection: string,
 	id: string,

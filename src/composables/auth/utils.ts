@@ -9,7 +9,6 @@ export const afterAuthCheck = async (user: User | null) => {
 
         const { fetchUserProfile } = useUser()
         const userProfile = await fetchUserProfile(user.uid) as any
-        console.log(userProfile?.value?.name);
         if (!userProfile?.value?.name) {
 
             await setFirestoreDocument('users', user.uid, {

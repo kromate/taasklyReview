@@ -4,7 +4,7 @@ import { db } from '../init'
 
 export const setFirestoreDocument = async (
 	collection: string,
-	id: string = uuidv4(),
+	id: string,
 	data: any
 ) => {
 	await setDoc(doc(db, collection, id), data)
@@ -13,7 +13,7 @@ export const setFirestoreSubDocument = async (
 	collectionName: string,
 	documentName: string,
 	subCollectionName: string,
-	id: string = uuidv4(),
+	id: string,
 	data: any
 ) => {
 	await setDoc(doc(db, collectionName, documentName, subCollectionName, id), data)

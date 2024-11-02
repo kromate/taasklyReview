@@ -26,7 +26,7 @@ export const useEditBookingType = () => {
         }
         await updateFirestoreSubDocument('users', user_id.value!, 'booking_types', bookingType.value.id, sentData)
         loading.value = false
-        useRouter().push('/people')
+        useRouter().push('/spaces')
         useAlert().openAlert({ type: 'SUCCESS', msg: 'Booking type Edited successfully!' })
         resetForm()
     }

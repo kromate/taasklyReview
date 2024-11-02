@@ -1,27 +1,27 @@
 import { getFirestoreSubCollection } from '@/firebase/firestore/fetch'
 import { useAlert } from '@/composables/core/notification'
 import { useUser } from '@/composables/auth/user'
+import { getFirestoreSubCollectionWithWhereQuery } from '@/firebase/firestore/query'
 
 
 
 
 
-const fetchedSpaceSubmissions = ref([] as any[])
+const fetchedSpaceTestimonials = ref([] as any[])
 
-const SpaceSubmissionsIsEmpty = computed(() => {
-    return fetchedSpaceSubmissions.value.length === 0
+const SpaceTestimonialsIsEmpty = computed(() => {
+    return fetchedSpaceTestimonials.value.length === 0
 })
 
-export const useFetchSpaceSubmissions = () => {
-    const { id: user_id } = useUser()
+export const useFetchSpaceTestimonials = () => {
     const loading = ref(false)
 
-    const fetchUserSpaceSubmissions = async (id: string) => {
+    const fetchSpaceTestimonials = async (id: string) => {
         loading.value = true
-        fetchedSpaceSubmissions.value = []
+        fetchedSpaceTestimonials.value = []
 
         try {
-            await getFirestoreSubCollection('spaces', id, 'submissions', fetchedSpaceSubmissions)
+            await getFirestoreSubCollection('spaces', id, 'testimonials', fetchedSpaceTestimonials)
             loading.value = false
         } catch (e: any) {
             loading.value = false
@@ -29,6 +29,19 @@ export const useFetchSpaceSubmissions = () => {
         }
     }
 
-    return { loading, fetchedSpaceSubmissions, fetchUserSpaceSubmissions, SpaceSubmissionsIsEmpty }
+    return { loading, fetchedSpaceTestimonials, fetchSpaceTestimonials, SpaceTestimonialsIsEmpty }
 }
 
+export const useFetchPublicSpaceTestimonials = () => {
+    const loading = ref(false)
+
+    const fetchPublicSpaceTestimonials = async (id: string) => {
+        loading.value = true
+        fetchedSpaceTestimonials.value = []
+
+        await getFirestoreSubCollectionWithWhereQuery('spaces', id, 'testimonials', fetchedSpaceTestimonials, { name: 'public', operator: '==', value: true })
+        loading.value = false
+    }
+
+    return { loading, fetchPublicSpaceTestimonials, fetchedSpaceTestimonials, SpaceTestimonialsIsEmpty }
+}

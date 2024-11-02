@@ -12,7 +12,7 @@ export const useFetchGoogleContacts = () => {
         _contact.value = contact
     }
 
-    const fetchSelectedGoogleContact = async (searchQuery: string = '') => {
+    const fetchSelectedGoogleContact = async (searchQuery = '') => {
         loading.value = true
         try {
             const { data } = await axios.get('/api/integrations/google_contacts/fetch', {
@@ -20,7 +20,7 @@ export const useFetchGoogleContacts = () => {
                     search: searchQuery
                 }
             })
-            console.log(data);
+
             fetchedContact.value = data
         } catch (e: any) {
             useAlert().openAlert({ type: 'ERROR', msg: `Error: ${e.message}`, addrs: 'useFetchGoogleContacts' })

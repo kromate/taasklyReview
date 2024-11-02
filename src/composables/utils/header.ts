@@ -9,6 +9,11 @@ type headstateTypes = {
     btnText?: string
     btnCall?: () => void
     loading?: Ref<boolean>
+    children?: {
+        label: string
+        icon: any
+        action: () => void
+    }[]
 }
 
 const headstate = {
@@ -18,7 +23,8 @@ const headstate = {
     shouldShowFab: ref(true),
     btnText: ref(''),
     btnCall: ref(() => {}),
-    loading: ref(false)
+    loading: ref(false),
+    children: ref<{ label: string; icon: any; action:() => void }[]>([] as any)
 }
 
 
@@ -28,7 +34,7 @@ export const usePageHeader = () => {
 
 
 
-    const setPageHeader = ({ description, title = 'The UnNamed Title', btnText, btnCall, shouldShowFab, shouldShowTab, loading = headstate.loading }: headstateTypes) => {
+    const setPageHeader = ({ description, title = 'The UnNamed Title', btnText, btnCall, shouldShowFab, shouldShowTab, loading = headstate.loading, children = headstate.children.value }: headstateTypes) => {
         headstate.description.value = description
         headstate.title.value = title
         headstate.btnText.value = btnText as string
@@ -36,7 +42,7 @@ export const usePageHeader = () => {
         headstate.shouldShowFab.value = shouldShowFab as boolean
         headstate.shouldShowTab.value = shouldShowTab as boolean
         headstate.loading = loading
-
+        headstate.children.value = children
 
         setCustomHead({
             title: `${title} | Taaskly`,

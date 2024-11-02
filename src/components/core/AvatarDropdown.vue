@@ -14,6 +14,10 @@
 						class="w-[200px] max-w-[100%]  my-2 mx-4 lg:ml-0 p-4 border border-dark rounded-md shadow-lg bg-light "
 					>
 						<DropdownMenuItem
+							value="LogOut" class="hover:bg-grey p-1 px-2 rounded-md  cursor-pointer" @click="useRouter().push('/spaces')">
+							Main Space
+						</DropdownMenuItem>
+						<DropdownMenuItem
 							value="LogOut" class="hover:bg-grey p-1 px-2 rounded-md text-red cursor-pointer" @click="useAuthModal().openLogout()">
 							Log Out
 						</DropdownMenuItem>
@@ -29,7 +33,7 @@
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuRoot, DropdownMenuTrigger } from 'radix-vue'
 import { useSignin } from '@/composables/auth/auth'
 import { useUser } from '@/composables/auth/user'
-import { useAuthModal } from '@/composables/core/modals';
+import { useAuthModal } from '@/composables/core/modals'
 
 
 

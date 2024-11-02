@@ -57,7 +57,7 @@ export const useCreateBookingType = () => {
         loading.value = true
         await setFirestoreSubDocument('users', user_id.value!, 'booking_types', id, sentData)
         loading.value = false
-        useRouter().push('/people')
+        useRouter().push('/spaces')
         useAlert().openAlert({ type: 'SUCCESS', msg: 'Booking type created successfully!' })
     }
 

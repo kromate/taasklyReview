@@ -1,31 +1,28 @@
-import { Users, Calendar, Clock, User, Settings, Grid3X3, Wallet } from 'lucide-vue-next'
+import { Users, Calendar, Clock, User, Settings, Grid3X3, MessageSquareTextIcon } from 'lucide-vue-next'
 
-export const dashboardRoutes = () => [
 
+export const dashboardRoutes = () => {
+	const id = useRoute().params.id
+
+	return [
 	{
-		icon: Users,
-		name: 'People',
-		route: '/people',
+		icon: MessageSquareTextIcon,
+		name: 'Reviews',
+		route: `/spaces/${id}`,
 		main: true,
-		bg: '#e5e7eb',
-		color: '#18181B'
+		type: 'all',
+		bg: '#F7F4FF',
+		color: '#4F1DEE'
 	},
 
-	{
-		icon: Grid3X3,
-		name: 'Integrations',
-		route: '/integrations',
-		type: 'all',
-		bg: '#e5e7eb',
-		color: '#18181B'
-	},
 	{
 		icon: Settings,
 		name: 'Settings',
-		route: '/settings',
+		route: `/spaces/${id}/settings`,
 		type: 'all',
 		bg: '#e5e7eb',
 		color: '#18181B'
 	}
 
 ]
+}

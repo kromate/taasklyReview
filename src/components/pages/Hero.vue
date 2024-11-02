@@ -8,7 +8,7 @@
 				Collect, manage, and showcase authentic customer testimonials with ease and use them to grow your business and brand.
 			</p>
 			<div class="flex gap-4 items-center w-full justify-center md:justify-start">
-				<nuxt-link to="/people" class="bg-black text-white md:py-4 py-3 md:px-6 px-8 rounded-md md:text-[17px]">
+				<nuxt-link to="/spaces" class="bg-black text-white md:py-4 py-3 md:px-6 px-8 rounded-md md:text-[17px]">
 					Get Started
 				</nuxt-link>
 				<!-- <a class="md:text-xl font-semibold underline " href="#demo" rel="noopener noreferrer">

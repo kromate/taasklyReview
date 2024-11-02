@@ -29,57 +29,56 @@ export default defineEventHandler(async (event) => {
     const people = google.people({ version: 'v1', auth: oAuth2Client })
 
     try {
-        let contacts: GoogleContact[] = [];
-        let nextPageToken: string = '';
+        let contacts: GoogleContact[] = []
+        let nextPageToken = ''
 
-        const searchQuery = getQuery(event).search as string || '';
+        const searchQuery = getQuery(event).search as string || ''
 
         do {
-            let formattedContacts: GoogleContact[] = [];
+            let formattedContacts: GoogleContact[] = []
 
             if (searchQuery) {
                 const response = await people.people.searchContacts({
                     query: searchQuery,
                     pageSize: 30,
-                    readMask: 'names,emailAddresses,phoneNumbers,photos',
-                });
+                    readMask: 'names,emailAddresses,phoneNumbers,photos'
+                })
 
-                const searchResults = response.data.results;
+                const searchResults = response.data.results
                 if (searchResults) {
-                    formattedContacts = searchResults.map(person => ({
+                    formattedContacts = searchResults.map((person) => ({
                         name: person.person?.names?.[0]?.displayName || '',
                         photo: person.person?.photos?.[0]?.url || '',
                         phone: person.person?.phoneNumbers?.[0]?.value || '',
                         email: person.person?.emailAddresses?.[0]?.value || ''
-                    }));
+                    }))
                 }
             } else {
                 const response = await people.people.connections.list({
                     resourceName: 'people/me',
                     pageSize: 2000,
                     pageToken: nextPageToken,
-                    personFields: 'names,emailAddresses,phoneNumbers,photos',
-                });
+                    personFields: 'names,emailAddresses,phoneNumbers,photos'
+                })
 
-                const connections = response.data.connections;
+                const connections = response.data.connections
                 if (connections) {
-                    formattedContacts = connections.map(contact => ({
+                    formattedContacts = connections.map((contact) => ({
                         name: contact.names?.[0]?.displayName || '',
                         photo: contact.photos?.[0]?.url || '',
                         phone: contact.phoneNumbers?.[0]?.value || '',
                         email: contact.emailAddresses?.[0]?.value || ''
-                    }));
+                    }))
                 }
 
-                nextPageToken = response.data.nextPageToken || '';
+                nextPageToken = response.data.nextPageToken || ''
             }
 
-            contacts = [...contacts, ...formattedContacts];
-        } while (nextPageToken);
+            contacts = [...contacts, ...formattedContacts]
+        } while (nextPageToken)
 
-        return contacts;
+        return contacts
     } catch (error: any) {
-        console.log(error);
         throw createError({ statusCode: 401, message: error.message })
     }
 })

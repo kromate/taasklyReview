@@ -2,7 +2,12 @@
 	<div class="relative" @click.stop>
 		<DropdownMenuRoot v-slot="{open}" :modal="false">
 			<DropdownMenuTrigger as-child>
+				<button v-if="buttonText" class="btn-primary px-4 py-2 md:px-6 md:py-3">
+					<span v-if="buttonText">{{ buttonText }}</span>
+					<ChevronDown class="ml-2" />
+				</button>
 				<button
+					v-else
 					class="flex outline-none items-center font-normal p-1 border rounded border-dark center card_btn"
 					:class="btnClass"
 				>
@@ -14,9 +19,9 @@
 				</button>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent class="z-10  absolute -right-4 ">
+			<DropdownMenuContent class="z-10  absolute " :class="[buttonText ? '-right-14 md:-right-[67px]' : '-right-4']">
 				<div
-					class="start-0 z-10 mt-1 rounded-md border border-line bg-white shadow-lg"
+					class="start-0 z-10 mt-2 rounded-md border border-line bg-white shadow-lg"
 					:class="[className, index > 1 ? 'bottom-8' : '']" role="menu"
 				>
 					<div class="p-2 gap-0.5 flex flex-col items-start w-full">
@@ -34,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { EllipsisIcon } from 'lucide-vue-next'
+import { EllipsisIcon, ChevronDown } from 'lucide-vue-next'
 import { DropdownMenuRoot, DropdownMenuTrigger, DropdownMenuContent } from 'radix-vue'
 
 
