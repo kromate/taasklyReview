@@ -34,7 +34,7 @@
 			<button
 				type="submit"
 				class="btn-primary bg-dark text-white"
-				:disabled="createSpaceLoading"
+				:disabled="createSpaceLoading || !createSpaceData.name || !createSpaceData.username || !isUsernameAvailable || checkUsernameLoading"
 			>
 				<span v-if="!createSpaceLoading" class="flex items-center gap-2">
 					Create Space
@@ -50,7 +50,7 @@ import { useCreateSpace, useSpaceUsername } from '@/composables/spaces/create'
 
 const { createSpace, loading: createSpaceLoading, createSpaceData } = useCreateSpace()
 
-const { isUsernameAvailable, checkUsername, loading: checkUsernameLoading } = useSpaceUsername()
+const { isUsernameAvailable, loading: checkUsernameLoading } = useSpaceUsername()
 
 watch(() => createSpaceData.name, (value) => {
 	if (!value) {
