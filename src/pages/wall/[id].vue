@@ -9,9 +9,9 @@
 			<p class="sj-wol-subtitle max-w-lg whitespace-pre-line sm:text-lg opacity-90 text-center px-8 mt-3">
 				See what our customers are saying about us
 			</p>
-			<button class="btn btn-primary mt-6 text-dark">
+			<nuxt-link :to="`/review/${id}`" target="_blank" class="btn btn-primary mt-6 text-dark">
 				Write a testimonial
-			</button>
+			</nuxt-link>
 		</header>
 		<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4 container mb-5">
 			<SpaceReviewWallCard v-for="review in (loading ? 3 : fetchedSpaceTestimonials)" :key="review" :data="loading ? {} : review" :loading="loading" />

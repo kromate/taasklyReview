@@ -4,8 +4,8 @@
 			<SpaceList :spaces="fetchedSpaces" />
 		</div>
 
-		<div v-if="spacesLoading" class="flex flex-col gap-4">
-			<Skeleton v-for="n in 3" :key="n" height="122px" radius="6px" />
+		<div v-if="spacesLoading" class="flex flex-col gap-4 w-full">
+			<Skeleton v-for="n in 3" :key="n" height="122px" width="100%" radius="6px" />
 		</div>
 
 		<div

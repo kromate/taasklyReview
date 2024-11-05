@@ -113,8 +113,8 @@ definePageMeta({
 watch(space, () => {
 	if (space.value?.title) {
 		setCustomHead({
-			title: `Share a Review | ${space.value?.title}`,
-			desc: `Share a Review for ${space.value?.title}`,
+			title: `Share a Review | ${space.value?.name}`,
+			desc: `Share a Review for ${space.value?.name}`,
 			img: space.value?.logo
 		})
 	}

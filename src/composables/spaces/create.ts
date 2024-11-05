@@ -1,25 +1,25 @@
 import { v4 as uuidv4 } from 'uuid'
-
-import { AtSign, FileIcon, PhoneIcon, CheckSquare2, CircleDot } from 'lucide-vue-next'
+import { getFirestoreCollectionWithWhereQuery } from '@/firebase/firestore/query'
 import { setFirestoreDocument } from '@/firebase/firestore/create'
 import { useAlert } from '@/composables/core/notification'
 import { useUser } from '@/composables/auth/user'
-import TextIcon from '@/assets/icons/Text.vue'
-import LongTextIcon from '@/assets/icons/LongText.vue'
 
 
+
+    const createSpaceData = reactive({
+        name: '',
+        description: '',
+        username: ''
+    })
 
 export const useCreateSpace = () => {
     const { id: user_id } = useUser()
     const loading = ref(false)
-    const createSpaceData = reactive({
-        title: '',
-        description: ''
-    })
+
 
     const createSpace = async () => {
-        if (!createSpaceData.title.trim()) {
-            useAlert().openAlert({ type: 'ERROR', msg: 'Please enter a title for the space' })
+        if (!createSpaceData.name.trim()) {
+            useAlert().openAlert({ type: 'ERROR', msg: 'Please enter a name for the space' })
             return
         }
 
@@ -29,8 +29,9 @@ export const useCreateSpace = () => {
             const initial_data = {
                 id,
                 user_id: user_id.value,
-                title: createSpaceData.title.trim(),
+                name: createSpaceData.name.trim(),
                 description: createSpaceData.description.trim(),
+                username: createSpaceData.username,
                 created_at: new Date(),
                 updated_at: new Date(),
                 reviews_count: 0
@@ -49,4 +50,32 @@ export const useCreateSpace = () => {
     }
 
     return { createSpace, loading, createSpaceData }
+}
+
+
+export const useSpaceUsername = () => {
+	const isUsernameAvailable = ref(true)
+	const loading = ref(false)
+
+	const checkUsername = async () => {
+		loading.value = true
+		createSpaceData.username = createSpaceData.username.replace(/ /g, '').toLowerCase()
+
+        const usernames = ref([])
+
+		await getFirestoreCollectionWithWhereQuery('usernames', usernames, { name: 'username', operator: '==', value: createSpaceData.username })
+
+
+
+		if (usernames.value.length) {
+			isUsernameAvailable.value = false
+		} else {
+			isUsernameAvailable.value = true
+		}
+		loading.value = false
+	}
+
+	watchDebounced(() => createSpaceData.username, checkUsername, { debounce: 500 })
+
+	return { isUsernameAvailable, checkUsername, loading }
 }

@@ -34,7 +34,7 @@ const SpaceModals = { CreateSpace } as Record<SpaceTypes, any>
 const authModal = modal.register('Auth', AuthModals)
 const coreModal = modal.register('Core', CoreModals)
 const bottombarModal = modal.register('Bottombar', BottombarModals)
-const spaceModal = modal.register('Space', SpaceModals) 
+const spaceModal = modal.register('Space', SpaceModals)
 
 
 
