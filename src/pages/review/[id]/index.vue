@@ -93,17 +93,10 @@ const submitReview = async () => {
 		step.value = 2
 	} else if (space.value) {
 		await createSpaceTestimonial(space.value.id)
-		useAlert().openAlert({ type: 'SUCCESS', msg: 'Review submitted successfully', addrs: 'submitReview' })
+		useRouter().push(`/review/${id}/thanks`)
 	}
 }
 
-const handlePhotoUpload = (event: Event) => {
-	const file = (event.target as HTMLInputElement).files?.[0]
-	if (file) {
-		// Handle file upload logic here
-		// You might want to store the file in the spaceTestimonialData or upload it to a server
-	}
-}
 
 definePageMeta({
 	layout: 'public'

@@ -20,11 +20,6 @@
 </template>
 
 <script setup lang="ts">
-
-import { useAlert } from '@/composables/core/notification'
-import { useFetchSpaceById } from '@/composables/spaces/id'
-import { useCreateSpaceTestimonial } from '@/composables/spaces/testimonials/create'
-import { setCustomHead } from '@/composables/core/head'
 import { useFetchPublicSpaceTestimonials } from '@/composables/spaces/testimonials/fetch'
 
 

@@ -66,7 +66,7 @@ export const useSpaceUsername = () => {
 		await getFirestoreCollectionWithWhereQuery('spaces', usernames, { name: 'username', operator: '==', value: createSpaceData.username })
 
 
-console.log(usernames.value.length)
+
 		if (usernames.value.length) {
 			isUsernameAvailable.value = false
 		} else {
