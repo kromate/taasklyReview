@@ -1,6 +1,6 @@
 <template>
-	<div v-if="loading" class="flex w-full flex-col gap-4">
-		<Skeleton v-for="i in 3" :key="i" class="w-full h-[100px]" />
+	<div v-if="loading" class="flex w-full flex-col gap-4 p-5">
+		<Skeleton v-for="i in 3" :key="i" class="w-full" height="100px" width="100%" radius="4px" />
 	</div>
 	<div v-if="!SpaceTestimonialsIsEmpty">
 		<SpaceReviewDashboardCard v-for="review in (loading ? 3 : fetchedSpaceTestimonials)" :key="review" :data="loading ? {} : review" :loading="loading" />
