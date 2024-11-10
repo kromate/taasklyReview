@@ -1,8 +1,11 @@
 <template>
+	<div v-if="loading" class="flex w-full flex-col gap-4">
+		<Skeleton v-for="i in 3" :key="i" class="w-full h-[100px]" />
+	</div>
 	<div v-if="!SpaceTestimonialsIsEmpty">
 		<SpaceReviewDashboardCard v-for="review in (loading ? 3 : fetchedSpaceTestimonials)" :key="review" :data="loading ? {} : review" :loading="loading" />
 	</div>
-	<div v-else>
+	<div v-else-if="!loading && SpaceTestimonialsIsEmpty">
 		<div class="flex justify-center items-center h-[80dvh]">
 			<p class="text-lg font-medium">
 				No reviews found
